@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
-import { LandingPage } from "./components/LandingPage";
-import { MaintenancePage } from "./components/MaintenancePage";
+import { LandingPage } from "@/features/landing/pages/LandingPage";
+import { MaintenancePage } from "@/features/maintenance/MaintenancePage";
 
 function MaintenancePageWrapper() {
   const navigate = useNavigate();
