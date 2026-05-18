@@ -8,8 +8,6 @@ import {
   Smartphone,
   ArrowRight,
   FileText,
-  Brain,
-  Activity,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -69,7 +67,7 @@ export function HeroSection() {
             label="Mobile App Preview 1"
             aspectRatio="416.35/849.04"
             className="w-[90px] md:w-[275px]"
-            imageSrc="/public/images/result.png"
+            imageSrc="/images/result.png"
           />
 
           <ImagePlaceholder
@@ -77,7 +75,7 @@ export function HeroSection() {
             label="Mobile App Preview 2"
             aspectRatio="416.35/849.04"
             className="w-[100px] md:w-[300px]"
-            imageSrc="/public/images/home.png"
+            imageSrc="/images/home.png"
           />
 
           <ImagePlaceholder
@@ -85,7 +83,7 @@ export function HeroSection() {
             label="Mobile App Preview 3"
             aspectRatio="416.35/849.04"
             className="w-[90px] md:w-[275px]"
-            imageSrc="/public/images/iot.png"
+            imageSrc="/images/iot.png"
           />
         </motion.div>
       </div>

@@ -6,7 +6,6 @@ import {
   Brain,
   Wifi,
   CloudRain,
-  BookOpen,
   Smartphone,
   Layers,
   Database,
@@ -48,21 +47,21 @@ export const features = [
     title: "AI Plant Disease Detection",
     description:
       "Advanced AI powered by Gemini analyzes plant images to detect diseases early with 95% accuracy. Get instant diagnosis and treatment recommendations.",
-    image: "/public/images/scan-ai.png",
+    image: "/images/scan-ai.png",
   },
   {
     icon: Wifi,
     title: "IoT Monitoring",
     description:
       "Real-time monitoring of soil moisture, temperature, humidity, and other critical parameters through connected sensors across your farm.",
-    image: "/public/images/iot-dashboard.png",
+    image: "/images/iot-dashboard.png",
   },
   {
     icon: CloudRain,
     title: "Weather & Content Hub",
     description:
       "Stay updated with hyperlocal weather forecasts while accessing farming guides, best practices, and expert educational content tailored to your agricultural needs.",
-    image: "/public/images/weather-news.png",
+    image: "/images/weather-news.png",
   },
 ];
 
