@@ -210,7 +210,7 @@ export function TeamPage() {
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-900 flex items-center justify-center gap-2">
                 <Crown className="w-7 h-7 text-[var(--vegrin-green-600)]" />
-                Penanggung Jawab Projek
+                Project Supervisor
               </h2>
 
               <div className="h-1 w-20 bg-[var(--vegrin-green-500)] mx-auto mt-3 rounded-full" />
