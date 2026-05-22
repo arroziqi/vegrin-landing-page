@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Sprout, Menu, X, Github } from "lucide-react";
 import { useScroll } from "@/hooks/useScroll";
@@ -10,6 +10,7 @@ export function Navbar() {
   const isScrolled = useScroll(20);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -22,6 +23,20 @@ export function Navbar() {
         top: offsetPosition,
         behavior: "smooth",
       });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleLinkClick = (link: { label: string; id: string; path?: string }) => {
+    if (link.path === "/team") {
+      navigate("/team");
+      setIsMobileMenuOpen(false);
+    } else {
+      if (location.pathname !== "/") {
+        navigate(`/#${link.id}`);
+      } else {
+        scrollToSection(link.id);
+      }
       setIsMobileMenuOpen(false);
     }
   };
@@ -42,7 +57,7 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <button
-              onClick={() => scrollToSection("home")}
+              onClick={() => handleLinkClick({ label: "Home", id: "home", path: "/" })}
               className="flex items-center gap-2 group"
             >
               <div className="relative">
@@ -55,15 +70,26 @@ export function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               <div className="flex items-center gap-6">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-sm font-medium text-gray-700 hover:text-[var(--vegrin-green-600)] transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive =
+                    (link.path === "/team" && location.pathname === "/team") ||
+                    (link.path === "/" &&
+                      location.pathname === "/" &&
+                      (location.hash === `#${link.id}` || (!location.hash && link.id === "home")));
+                  return (
+                    <button
+                      key={link.id}
+                      onClick={() => handleLinkClick(link)}
+                      className={`text-sm font-medium transition-colors ${
+                        isActive
+                          ? "text-[var(--vegrin-green-600)] font-semibold"
+                          : "text-gray-700 hover:text-[var(--vegrin-green-600)]"
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="flex items-center gap-3">
@@ -112,15 +138,26 @@ export function Navbar() {
           >
             <div className="container mx-auto px-6 py-6">
               <div className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-left text-base font-medium text-gray-700 hover:text-[var(--vegrin-green-600)] transition-colors py-2"
-                  >
-                    {link.label}
-                  </button>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive =
+                    (link.path === "/team" && location.pathname === "/team") ||
+                    (link.path === "/" &&
+                      location.pathname === "/" &&
+                      (location.hash === `#${link.id}` || (!location.hash && link.id === "home")));
+                  return (
+                    <button
+                      key={link.id}
+                      onClick={() => handleLinkClick(link)}
+                      className={`text-left text-base font-medium transition-colors py-2 ${
+                        isActive
+                          ? "text-[var(--vegrin-green-600)] font-semibold"
+                          : "text-gray-700 hover:text-[var(--vegrin-green-600)]"
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  );
+                })}
 
                 <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
                   <Button
